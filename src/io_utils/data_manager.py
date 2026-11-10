@@ -1,12 +1,10 @@
 from collections import abc
 import logging
 from pathlib import Path
-import typing as t
 
 from io_utils.utils import validate_path
 
-T = t.TypeVar('T')
-class DataManager(t.Generic[T]):
+class DataManager[T]:
     def __init__(self, reader: abc.Callable[[Path], T]):
         self._reader = reader
 

@@ -15,23 +15,21 @@ def validate_path(path: PathLike, /, isdir: bool = False):
     if not isdir and not path.is_file():
         raise FileNotFoundError(f"Path {path} is not a file.")
     
-P = t.ParamSpec('P')
-R = t.TypeVar('R')
 @t.overload
-def path_validator(
+def path_validator[**P, R](
     func: None = None, /,
     *args: str,
     **kwargs: bool,
 ) -> abc.Callable[[abc.Callable[P, R]], abc.Callable[P, R]]:...
 
 @t.overload
-def path_validator(
+def path_validator[**P, R](
     func: abc.Callable[P, R], /,
     *args: str,
     **kwargs: bool,
 ) -> abc.Callable[P, R]:...
 
-def path_validator(
+def path_validator[**P, R](
     func: abc.Callable[P, R] | None = None, /,
     *args: str,
     **kwargs: bool,

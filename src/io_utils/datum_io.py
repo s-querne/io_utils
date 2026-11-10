@@ -1,9 +1,7 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
-import typing as t
 
-T = t.TypeVar("T")
-class IDatumIO(ABC, t.Generic[T]):
+class IDatumIO[T](ABC):
     @abstractmethod
     def load(self, path: Path) -> T:...
 
